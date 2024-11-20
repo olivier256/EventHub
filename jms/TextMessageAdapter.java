@@ -16,7 +16,6 @@ public abstract class TextMessageAdapter implements TextMessage {
 
 	@Override
 	public void setJMSMessageID(String id) throws JMSException {
-
 	}
 
 	@Override
@@ -26,7 +25,6 @@ public abstract class TextMessageAdapter implements TextMessage {
 
 	@Override
 	public void setJMSTimestamp(long timestamp) throws JMSException {
-
 	}
 
 	@Override
@@ -36,12 +34,10 @@ public abstract class TextMessageAdapter implements TextMessage {
 
 	@Override
 	public void setJMSCorrelationIDAsBytes(byte[] correlationID) throws JMSException {
-
 	}
 
 	@Override
 	public void setJMSCorrelationID(String correlationID) throws JMSException {
-
 	}
 
 	@Override
