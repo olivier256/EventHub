@@ -16,6 +16,7 @@ public abstract class TextMessageAdapter implements TextMessage {
 
 	@Override
 	public void setJMSMessageID(String id) throws JMSException {
+
 	}
 
 	@Override

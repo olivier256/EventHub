@@ -1,12 +1,21 @@
 package jms;
 
-public class Bank {
-	private final String name;
-	private final EventHub eventHub;
+import java.util.logging.Logger;
 
-	public Bank(String name, EventHub eventHub) {
+import javax.jms.JMSException;
+import javax.jms.Message;
+
+public class Bank extends MessageProducerAdapter {
+	private static final Logger logger = Logger.getAnonymousLogger();
+
+	private final String name;
+	private final MessageBus messageBus;
+	private Message lastSentMessage;
+
+	public Bank(String name, MessageBus messageBus) {
 		this.name = name;
-		this.eventHub = eventHub;
+		this.messageBus = messageBus;
+		lastSentMessage = null;
 	}
 
 	@Override
@@ -14,9 +23,17 @@ public class Bank {
 		return "Bank [name=" + name + "]";
 	}
 
-	public void publishMessage(String event) {
-		TextMessageImpl message = new TextMessageImpl(name, event);
-		eventHub.publishMessage(message);
+	@Override
+	public void send(Message message) throws JMSException {
+		logger.info(() -> "Bank " + name + " sending message " + message);
+		boolean messageActuallySent = messageBus.push(message);
+		if (messageActuallySent) {
+			lastSentMessage = message;
+		}
+	}
+
+	public Message getLastSentMessage() {
+		return lastSentMessage;
 	}
 
 }

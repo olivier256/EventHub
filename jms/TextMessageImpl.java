@@ -1,17 +1,15 @@
 package jms;
 
 public class TextMessageImpl extends TextMessageAdapter {
-	private final String name;
-	private final String event;
+	private final String text;
 
-	public TextMessageImpl(String name, String event) {
-		this.name = name;
-		this.event = event;
+	public TextMessageImpl(String text) {
+		this.text = text;
 	}
 
 	@Override
 	public String getText() {
-		return "TextMessageImpl: {name: \"" + name + "\", event: \"" + event + "\"}";
+		return text;
 	}
 
 }
